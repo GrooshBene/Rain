@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -47,8 +48,15 @@ public class calendar extends ActionBarActivity implements View.OnClickListener,
         calendarGridView = (GridView) findViewById(R.id.calendarGrid);
         lastMonth.setOnClickListener(this);
         nextMonth.setOnClickListener(this);
+        LinearLayout backbtn = (LinearLayout)findViewById(R.id.back_ic);
         calendarGridView.setOnItemClickListener(this);
         dayList = new ArrayList<DayInfo>();
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override
