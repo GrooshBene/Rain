@@ -35,7 +35,7 @@ public class Home extends Activity {
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"오예 섹스",Toast.LENGTH_SHORT).show();
+
             }
         });
     }
