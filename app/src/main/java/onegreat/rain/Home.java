@@ -11,11 +11,12 @@ import android.widget.Toast;
 
 
 public class Home extends Activity {
-
+    CustomDialog  customDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        customDialog = new CustomDialog(Home.this);
         ImageView cal = (ImageView)findViewById(R.id.btn_cal);
         ImageView game = (ImageView)findViewById(R.id.btn_game);
         ImageView setting = (ImageView)findViewById(R.id.btn_option);
@@ -35,7 +36,7 @@ public class Home extends Activity {
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Toast.makeText(getApplicationContext(),"ㅁㄴㅇㄹ",Toast.LENGTH_SHORT).show();
+                customDialog.show();
             }
         });
     }
