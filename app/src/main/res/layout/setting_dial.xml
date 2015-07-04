@@ -51,12 +51,24 @@
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"/>
-            <ImageView
+            <FrameLayout
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
-                android:src="@drawable/tg_off"
-                android:id="@+id/sound_tg"/>
+                android:id="@+id/sound_btn">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/tg_on"
+                    android:id="@+id/sound_on"
+                    android:visibility="invisible"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/sound_off"
+                    android:src="@drawable/tg_off"
+                    />
+            </FrameLayout>
         </LinearLayout>
         <Space
             android:layout_width="match_parent"
@@ -82,12 +94,24 @@
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3.5"/>
-            <ImageView
+            <FrameLayout
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
-                android:src="@drawable/tg_on"
-                android:id="@+id/tg_fx"/>
+                android:id="@+id/fx_btn">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/tg_on"
+                    android:id="@+id/fx_on"
+                    android:visibility="invisible"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/tg_off"
+                    android:id="@+id/fx_off"/>
+            </FrameLayout>
+
         </LinearLayout>
         <Space
             android:layout_width="match_parent"
