@@ -5,20 +5,18 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 /**
  * Created by GrooshBene on 2015-07-03.
  */
 public class CustomDialog extends Dialog {
 
-    Button button;
-    TextView Title, Description;
-    String DialogTitle, DialogDescription; // 받아온 String값들을 저장할 String객체 생성
-    View.OnClickListener onClickListenerOnCustomDialog; // 받아온 온클릭리스터를 저장할 View.OnClickListener객체 생성
+//    Button button;
+//    TextView Title, Description;
+//    String DialogTitle, DialogDescription; // 받아온 String값들을 저장할 String객체 생성
+//    View.OnClickListener onClickListenerOnCustomDialog; // 받아온 온클릭리스터를 저장할 View.OnClickListener객체 생성
     int soundCnt = 1;
     int fxCnt = 1;
     @Override
