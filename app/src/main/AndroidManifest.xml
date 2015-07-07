@@ -25,10 +25,6 @@
             android:label="@string/title_activity_calender" >
         </activity>
         <activity
-            android:name=".game"
-            android:label="@string/title_activity_game" >
-        </activity>
-        <activity
             android:name=".calendar"
             android:label="@string/title_activity_calendar" >
         </activity>

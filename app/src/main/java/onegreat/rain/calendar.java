@@ -131,10 +131,7 @@ public class calendar extends ActionBarActivity implements View.OnClickListener,
     }
 
     public void onItemClick(AdapterView<?> parent, View v, int position, long arg3) {
-//        Paint paint = new Paint();
-//        paint.setColor(Color.BLACK);
-//        paint.setAlpha(40);
-//        calendarGridView.setBackground();
+        mini_scheduler.setBackgroundResource(R.drawable.fade_cal_xhdpi);
     }
 
     public void onClick(View v) {
