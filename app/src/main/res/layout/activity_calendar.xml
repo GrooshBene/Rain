@@ -45,6 +45,12 @@
                    android:src="@drawable/chunbul"/>
            </LinearLayout>
         </LinearLayout>
+        <Space
+
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_weight="0.5"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -65,6 +71,7 @@
         <!--android:layout_width="1dp"-->
         <!--android:layout_height="match_parent" -->
         <!--android:layout_weight="0.5"/>-->
+
             <TextView
                 android:id="@+id/calendarTitle"
                 android:layout_width="1dp"
@@ -82,7 +89,10 @@
                 android:layout_weight="0.5"
                 android:src="@drawable/ic_month_front"/>
         </LinearLayout>
-
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_weight="1"/>
         <GridView
             android:id="@+id/calendarGrid"
             android:layout_width="match_parent"
@@ -92,11 +102,7 @@
             android:listSelector="@drawable/grid_view_select"
             android:numColumns="7"
             android:stretchMode="columnWidth" />
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_weight="3"
-            android:id="@+id/schedule_list"/>
+
 
 
     </LinearLayout>

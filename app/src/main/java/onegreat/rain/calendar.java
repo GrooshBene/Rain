@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 
-public class calendar extends ActionBarActivity implements View.OnClickListener,AdapterView.OnItemClickListener {
+public class calendar extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
     public static int SUNDAY = 1;
     TextView calendarViewTitle;
     GridView calendarGridView;
@@ -26,29 +26,20 @@ public class calendar extends ActionBarActivity implements View.OnClickListener,
     Button lastMonth, nextMonth;
     private ListView mini_scheduler;
     private ArrayAdapter<String> m_adapter;
-
-
+    int position_temp=0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
-        m_adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1);
-        mini_scheduler=(ListView)findViewById(R.id.schedule_list);
-        mini_scheduler.setAdapter(m_adapter);
-        m_adapter.add("돌겜 하기");
-        m_adapter.add("달리기 운동하기");
-        m_adapter.add("아침밥 챙겨먹기");
-        m_adapter.add("구창림 때리기");
-        m_adapter.add("정유빈 때리기");
-        m_adapter.add("맹승연한테 빌기");
+        m_adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1);
         ImageView lastMonth = (ImageView) findViewById(R.id.last_month);
         ImageView nextMonth = (ImageView) findViewById(R.id.next_month);
         calendarViewTitle = (TextView) findViewById(R.id.calendarTitle);
         calendarGridView = (GridView) findViewById(R.id.calendarGrid);
         lastMonth.setOnClickListener(this);
         nextMonth.setOnClickListener(this);
-        LinearLayout backbtn = (LinearLayout)findViewById(R.id.back_ic);
+        LinearLayout backbtn = (LinearLayout) findViewById(R.id.back_ic);
         calendarGridView.setOnItemClickListener(this);
         dayList = new ArrayList<DayInfo>();
         backbtn.setOnClickListener(new View.OnClickListener() {
@@ -131,7 +122,6 @@ public class calendar extends ActionBarActivity implements View.OnClickListener,
     }
 
     public void onItemClick(AdapterView<?> parent, View v, int position, long arg3) {
-        mini_scheduler.setBackgroundResource(R.drawable.fade_cal_xhdpi);
     }
 
     public void onClick(View v) {
