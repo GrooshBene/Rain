@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -122,6 +123,11 @@ public class calendar extends ActionBarActivity implements View.OnClickListener,
     }
 
     public void onItemClick(AdapterView<?> parent, View v, int position, long arg3) {
+        TextView d = (TextView)v.findViewById(R.id.content_day_text);
+        String s = d.getText().toString();
+        Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
+        DialogSchedule asdf = new DialogSchedule(calendar.this, (thisMonthCalendar.get(Calendar.MONTH)) + "월 "+s+"일");
+        asdf.show();
     }
 
     public void onClick(View v) {
