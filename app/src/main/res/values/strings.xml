@@ -11,5 +11,6 @@
     <string name="title_activity_options">options</string>
     <string name="title_activity_main_activity2">MainActivity2Activity</string>
     <string name="title_activity_calendar">calendar</string>
+    <string name="title_activity_schedule_sign">ScheduleSign</string>
 
 </resources>

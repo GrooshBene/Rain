@@ -2,6 +2,7 @@ package onegreat.rain;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -28,8 +29,13 @@ public class DialogSchedule extends Dialog implements AdapterView.OnItemClickLis
         ListView scheduleList = (ListView)findViewById(R.id.schedule_list);
         scheduleList.setAdapter(s);
         s.add("a");
-        s.add("b");
-        s.add("c");
+        s.add("k");
+        s.add("q");
+        s.add("g");
+        s.add("d");
+        s.add("x");
+        s.add("e");
+        s.add("s");
 
         dateText = (TextView) findViewById(R.id.list_day);
         LinearLayout backbtn = (LinearLayout)findViewById(R.id.backbtn);
@@ -65,6 +71,13 @@ public class DialogSchedule extends Dialog implements AdapterView.OnItemClickLis
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+        ListView list = (ListView)findViewById(R.id.schedule_list);
+        Intent intent = new Intent(context , ScheduleSign.class);
+        intent.putExtra("key", (char[]) list.getItemAtPosition(position));
+        context.startActivity(intent);
+
     }
+
+
 }
 
