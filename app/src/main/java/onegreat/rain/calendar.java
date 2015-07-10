@@ -9,9 +9,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -20,20 +18,22 @@ import java.util.Calendar;
 public class calendar extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
     public static int SUNDAY = 1;
     TextView calendarViewTitle;
+    DialogSchedule ScheduleDialog;
     GridView calendarGridView;
     private ArrayList<DayInfo> dayList;
     private CalendarAdapterClass calendarAdapterClass;
     Calendar lastMonthCalendar, thisMonthCalendar, nextMonthCalendar;
     Button lastMonth, nextMonth;
-    private ListView mini_scheduler;
-    private ArrayAdapter<String> m_adapter;
-    int position_temp=0;
+    int position_temp = 0;
+    ArrayAdapter<String> m_adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
         m_adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1);
+
+        ScheduleDialog = new DialogSchedule(calendar.this, m_adapter);
         ImageView lastMonth = (ImageView) findViewById(R.id.last_month);
         ImageView nextMonth = (ImageView) findViewById(R.id.next_month);
         calendarViewTitle = (TextView) findViewById(R.id.calendarTitle);
@@ -123,28 +123,10 @@ public class calendar extends ActionBarActivity implements View.OnClickListener,
     }
 
     public void onItemClick(AdapterView<?> parent, View v, int position, long arg3) {
-        TextView d = (TextView)v.findViewById(R.id.content_day_text);
-        String s = d.getText().toString();
-        Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
-        DialogSchedule asdf = new DialogSchedule(calendar.this, (thisMonthCalendar.get(Calendar.MONTH)) + "월 "+s+"일");
-        setArray();
-        asdf.show();
+        ScheduleDialog.show();
     }
 
-    public void setArray() {
-        ArrayAdapter<String> m_adapter;
-        m_adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1);
-        ListView mini_scheduler=(ListView)findViewById(R.id.schedule_list);
-        mini_scheduler.setAdapter(m_adapter);
-        m_adapter.add("돌겜 하기");
-        m_adapter.add("달리기 운동하기");
-        m_adapter.add("아침밥 챙겨먹기");
-        m_adapter.add("구창림 때리기");
-        m_adapter.add("정유빈 때리기");
-        m_adapter.add("맹승연한테 빌기");
-        ListView scheduleList  = (ListView)findViewById(R.id.schedule_list);
-        scheduleList.setAdapter(m_adapter);
-    }
+
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.last_month: {

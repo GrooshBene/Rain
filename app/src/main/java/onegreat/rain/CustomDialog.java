@@ -13,6 +13,8 @@ import android.widget.ImageView;
  */
 public class CustomDialog extends Dialog {
 
+
+
 //    Button button;
 //    TextView Title, Description;
 //    String DialogTitle, DialogDescription; // 받아온 String값들을 저장할 String객체 생성
