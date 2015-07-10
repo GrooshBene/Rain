@@ -5,11 +5,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Adapter;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 /**
@@ -18,20 +15,12 @@ import android.widget.TextView;
 public class DialogSchedule extends Dialog implements AdapterView.OnItemClickListener
 {
     TextView dateText;
-    public String[] arrList = {
-            "정유빈 때리기",
-            "구창림 때리기",
-            "잠좀 자자 제발"
-    };
 
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ArrayAdapter<String> Adapter;
-        Adapter  = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrList);//에러발생
-        ListView scheduleList  = (ListView)findViewById(R.id.schedule_list);
-        scheduleList.setAdapter(Adapter);
-        setWindowManager(); // Window 기본 구성 설정, 백그라운드 dimm정도 설정 등
+       setWindowManager(); // Window 기본 구성 설정, 백그라운드 dimm정도 설정 등
         setContentView(R.layout.schedule_list); // 다이얼로그 레이아웃, 레이아웃 관련 설명도 주석달아놨으니 읽어보세요
 
         dateText = (TextView) findViewById(R.id.list_day);

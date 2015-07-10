@@ -127,9 +127,24 @@ public class calendar extends ActionBarActivity implements View.OnClickListener,
         String s = d.getText().toString();
         Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
         DialogSchedule asdf = new DialogSchedule(calendar.this, (thisMonthCalendar.get(Calendar.MONTH)) + "월 "+s+"일");
+        setArray();
         asdf.show();
     }
 
+    public void setArray() {
+        ArrayAdapter<String> m_adapter;
+        m_adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1);
+        ListView mini_scheduler=(ListView)findViewById(R.id.schedule_list);
+        mini_scheduler.setAdapter(m_adapter);
+        m_adapter.add("돌겜 하기");
+        m_adapter.add("달리기 운동하기");
+        m_adapter.add("아침밥 챙겨먹기");
+        m_adapter.add("구창림 때리기");
+        m_adapter.add("정유빈 때리기");
+        m_adapter.add("맹승연한테 빌기");
+        ListView scheduleList  = (ListView)findViewById(R.id.schedule_list);
+        scheduleList.setAdapter(m_adapter);
+    }
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.last_month: {
