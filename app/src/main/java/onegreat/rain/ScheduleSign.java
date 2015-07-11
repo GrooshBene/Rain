@@ -18,6 +18,7 @@ public class ScheduleSign extends ActionBarActivity {
         TextView tv = (TextView)findViewById(R.id.asdf);
         String s = intent.getStringExtra("key");
         tv.setText(s);
+
     }
 
     @Override

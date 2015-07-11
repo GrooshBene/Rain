@@ -1,5 +1,6 @@
 package onegreat.rain;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -32,9 +34,9 @@ public class calendar extends ActionBarActivity implements View.OnClickListener,
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
-        m_adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1);
+//        m_adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1);
 
-        ScheduleDialog = new DialogSchedule(calendar.this, m_adapter);
+
         ImageView lastMonth = (ImageView) findViewById(R.id.last_month);
         ImageView nextMonth = (ImageView) findViewById(R.id.next_month);
         calendarViewTitle = (TextView) findViewById(R.id.calendarTitle);
@@ -124,7 +126,9 @@ public class calendar extends ActionBarActivity implements View.OnClickListener,
     }
 
     public void onItemClick(AdapterView<?> parent, View v, int position, long arg3) {
-        ScheduleDialog.show();
+        Intent intent = new Intent(calendar.this, DialogSchedule.class);
+        startActivityForResult(intent, 1);
+        Toast.makeText(getApplicationContext(), position+"", Toast.LENGTH_SHORT).show();
     }
 
 
