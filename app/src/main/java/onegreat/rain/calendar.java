@@ -108,6 +108,27 @@ public class calendar extends ActionBarActivity implements View.OnClickListener,
 
         initCalendarAdapter();
     }
+    private int getPositionToDate(int position, Calendar calendar){
+        int dayOfMonth;
+        int date;
+        int thisMonthLastDay;
+        int lastMonthStartDay;
+        DayInfo day;
+
+        dayOfMonth = calendar.get(Calendar.DAY_OF_WEEK);
+        thisMonthLastDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+        calendar.add(Calendar.MONTH, -1);
+        lastMonthStartDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+        calendar.add(Calendar.MONTH, 1);
+
+        if (dayOfMonth == SUNDAY) {
+            dayOfMonth += 7;
+        }
+        lastMonthStartDay -= (dayOfMonth - 1) - 1;
+        date = lastMonthStartDay+position;
+        return date;
+
+    }
 
     private Calendar getLastMonth(Calendar calendar) {
         calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), 1);
@@ -128,7 +149,7 @@ public class calendar extends ActionBarActivity implements View.OnClickListener,
     public void onItemClick(AdapterView<?> parent, View v, int position, long arg3) {
         Intent intent = new Intent(calendar.this, DialogSchedule.class);
         startActivityForResult(intent, 1);
-        Toast.makeText(getApplicationContext(), position+"", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), getPositionToDate(position,thisMonthCalendar)+"", Toast.LENGTH_SHORT).show();
     }
 
 
