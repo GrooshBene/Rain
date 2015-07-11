@@ -108,7 +108,7 @@ public class calendar extends ActionBarActivity implements View.OnClickListener,
 
         initCalendarAdapter();
     }
-    private int getPositionToDate(int position, Calendar calendar){
+    private int getPositionToDate(int position, Calendar calendar){//다이얼로그에 띄울 날짜 계산함
         int dayOfMonth;
         int date;
         int thisMonthLastDay;
