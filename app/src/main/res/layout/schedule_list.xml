@@ -67,7 +67,7 @@
                 android:layout_weight="6"
                 android:id="@+id/list_day"
                 android:textColor="#6ec6f8"
-                android:textSize="25dp"
+                android:textSize="22dp"
                 android:textStyle="bold"/>
 
     </LinearLayout>

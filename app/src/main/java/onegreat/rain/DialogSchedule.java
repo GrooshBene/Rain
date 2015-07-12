@@ -24,9 +24,13 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setWindowManager(); // Window ±âº» ±¸¼º ¼³Á¤, ¹é±×¶ó¿îµå dimmÁ¤µµ ¼³Á¤ µî
-        setContentView(R.layout.schedule_list); // ´ÙÀÌ¾ó·Î±× ·¹ÀÌ¾Æ¿ô, ·¹ÀÌ¾Æ¿ô °ü·Ã ¼³¸íµµ ÁÖ¼®´Þ¾Æ³ùÀ¸´Ï ÀÐ¾îº¸¼¼¿ä
+        setWindowManager(); // Window ï¿½âº» ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½×¶ï¿½ï¿½ï¿½ dimmï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+        setContentView(R.layout.schedule_list); // ï¿½ï¿½ï¿½Ì¾ï¿½Î±ï¿½ ï¿½ï¿½ï¿½Ì¾Æ¿ï¿½, ï¿½ï¿½ï¿½Ì¾Æ¿ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½? ï¿½Ö¼ï¿½ï¿½Þ¾Æ³ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾îº¸ï¿½ï¿½ï¿½ï¿½
         ListView scheduleList = (ListView) findViewById(R.id.schedule_list);
+        Intent intent = getIntent();
+        int year = intent.getIntExtra("year",0);
+        int month = intent.getIntExtra("month",0);
+        int dayOfMonth = intent.getIntExtra("date",0);
         m_adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1);
         scheduleList.setAdapter(m_adapter);
         m_adapter.add("a");
@@ -39,6 +43,7 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
         m_adapter.add("s");
 
         dateText = (TextView) findViewById(R.id.list_day);
+        dateText.setText(year+"ë…„ "+month+"ì›” "+dayOfMonth+"ì¼");
         LinearLayout backbtn = (LinearLayout) findViewById(R.id.backbtn);
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,12 +55,12 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
 
     }
 
-    // È£ÃâµÇ¾úÀ»¶§ ¹Þ¾Æ¿À´Â°Í > context, dialogTitle, dialogDescription, dialogOnClickListener.
-    // È£ÃâµÇ¼­ ¹Þ¾Æ¿ÔÀ»½Ã º» ¾×Æ¼ºñÆ¼ÀÇ String dialogTitle, String dialogDescription, View.OnClickListener onClickListenerOnCustomDialog¿¡ ³Ñ°ÜÁÜ
+    // È£ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½ï¿½Â°ï¿½ > context, dialogTitle, dialogDescription, dialogOnClickListener.
+    // È£ï¿½ï¿½Ç¼ï¿½ ï¿½Þ¾Æ¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ï¿½Æ¼ï¿½ï¿½ String dialogTitle, String dialogDescription, View.OnClickListener onClickListenerOnCustomDialogï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½ï¿½
 //    public DialogSchedule(Context context, ArrayAdapter<String> m_adapter) {
 //        /*
-//        ³Ñ°Ü¹ÞÀº context¿Í ´ÙÀÌ¾ó·Î±×ÀÇ ±âº» Theme Á¤ÀÇ.
-//        ¸î°¡Áö ´Ù¸¥ Diealog Å×¸¶¸¦ Àû¿ë½ÃÄÑºÃ´Âµ¥ °¡Àå ÀûÇÕÇÑ°Ô AppCompat¿¡¼­ Áö¿øÇÏ´Â DialogÀÌ´õ¶ó
+//        ï¿½Ñ°Ü¹ï¿½ï¿½ï¿½ contextï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±ï¿½ï¿½ï¿½ ï¿½âº» Theme ï¿½ï¿½ï¿½ï¿½.
+//        ï¿½î°¡ï¿½ï¿½ ï¿½Ù¸ï¿½ Diealog ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ÑºÃ´Âµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ°ï¿½ AppCompatï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Dialogï¿½Ì´ï¿½ï¿½ï¿½
 //        */
 ////        super(context, R.style.Theme_AppCompat_Light_Dialog);
 //        this.s = m_adapter;
@@ -63,7 +68,7 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
 
 
     public void setWindowManager() {
-        //À©µµ¿ì ¹Þ¾Æ¿Í¼­ dimAmount¼³Á¤, ÀÌ°Ç ±×³É ¾È°Çµå·Áµµ µÉµí
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿Í¼ï¿½ dimAmountï¿½ï¿½ï¿½ï¿½, ï¿½Ì°ï¿½ ï¿½×³ï¿½ ï¿½È°Çµï¿½ï¿½ï¿½ï¿½ ï¿½Éµï¿½
         WindowManager.LayoutParams lpWindow = new WindowManager.LayoutParams();
         lpWindow.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         lpWindow.dimAmount = 0.8f;
@@ -74,7 +79,7 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         ListView list = (ListView) findViewById(R.id.schedule_list);
-        Intent intent = new Intent(context, ScheduleSign.class);
+        Intent intent = new Intent(DialogSchedule.this, ScheduleSign.class);
         intent.putExtra("key", (char[]) list.getItemAtPosition(position));
         startActivity(intent);
 
