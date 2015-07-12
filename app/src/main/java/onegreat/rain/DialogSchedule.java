@@ -8,9 +8,12 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by GrooshBene on 2015-07-08.
@@ -20,12 +23,14 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
     TextView dateText;
     private ArrayAdapter<String> m_adapter;
     Context context;
+    ImageView btn_add;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setWindowManager(); // Window �⺻ ���� ����, ��׶��� dimm���� ���� ��
         setContentView(R.layout.schedule_list); // ���̾�α� ���̾ƿ�, ���̾ƿ� ��� ���? �ּ��޾Ƴ����� �о����
+        btn_add = (ImageView)findViewById(R.id.btn_add);
         ListView scheduleList = (ListView) findViewById(R.id.schedule_list);
         Intent intent = getIntent();
         int year = intent.getIntExtra("year",0);
@@ -50,6 +55,13 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
             public void onClick(View v) {
                 finish();
 
+            }
+        });
+        btn_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DialogSchedule.this, ScheduleSign.class);
+                startActivity(intent);
             }
         });
 
@@ -77,11 +89,11 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-        ListView list = (ListView) findViewById(R.id.schedule_list);
-        Intent intent = new Intent(DialogSchedule.this, ScheduleSign.class);
-        intent.putExtra("key", (char[]) list.getItemAtPosition(position));
-        startActivity(intent);
+//
+//        ListView list = (ListView) findViewById(R.id.schedule_list);
+//        Intent intent = new Intent(DialogSchedule.this, ScheduleSign.class);
+//        intent.putExtra("key", (char[]) list.getItemAtPosition(position));
+//        startActivity(intent);
 
     }
 

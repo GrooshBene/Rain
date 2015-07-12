@@ -5,19 +5,28 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
 public class ScheduleSign extends ActionBarActivity {
-
+    LinearLayout backbtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_sign);
-        Intent intent = getIntent();
-        TextView tv = (TextView)findViewById(R.id.asdf);
-        String s = intent.getStringExtra("key");
-        tv.setText(s);
+        backbtn = (LinearLayout)findViewById(R.id.backbtn);
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+//        Intent intent = getIntent();
+//        TextView tv = (TextView)findViewById(R.id.asdf);
+//        String s = intent.getStringExtra("key");
+//        tv.setText(s);
 
     }
 

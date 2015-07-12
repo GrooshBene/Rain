@@ -75,7 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_weight="0.5"/>
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_weight="8">
@@ -83,9 +83,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/schedule_list">
-
             </ListView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="5"
+                android:orientation="vertical"
+
+                >
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="3.9"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:weightSum="10"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:src="@drawable/btn_add"
+                    android:id="@+id/btn_add"/>
             </LinearLayout>
+            </LinearLayout>
+            </FrameLayout>
     </LinearLayout>
 
 </LinearLayout>

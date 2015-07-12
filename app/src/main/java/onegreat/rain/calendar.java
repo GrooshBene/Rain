@@ -31,13 +31,20 @@ public class calendar extends Activity {
 //    int position_temp = 0;
 //    ArrayAdapter<String> m_adapter;
     CalendarView cal;
-
+    LinearLayout backbtn;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
         cal = (CalendarView)findViewById(R.id.calendar);
+        backbtn = (LinearLayout)findViewById(R.id.back_ic);
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         cal.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView calendarView, int year, int month, int dayOfMonth) {
