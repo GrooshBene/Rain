@@ -17,16 +17,16 @@ public class CustomDialog extends Dialog {
 
 //    Button button;
 //    TextView Title, Description;
-//    String DialogTitle, DialogDescription; // tomi�޾ƿ� String������ ������ String��ü ��
-//    View.OnClickListener onClickListenerOnCustomDialog; // �޾ƿ� ��Ŭ�������͸� ������ View.OnClickListener��ü ��
+//    String DialogTitle, DialogDescription; // tomi占쌨아울옙 String占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 String占쏙옙체 占쏙옙
+//    View.OnClickListener onClickListenerOnCustomDialog; // 占쌨아울옙 占쏙옙클占쏙옙占쏙옙占쏙옙占싶몌옙 占쏙옙占쏙옙占쏙옙 View.OnClickListener占쏙옙체 占쏙옙
     int soundCnt = 1;
     int fxCnt = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setWindowManager(); // Window �⺻ ���� ����, ��׶��� dimm���� ���� ��
-        setContentView(R.layout.setting_dial); // ���̾�α� ���̾ƿ�, ���̾ƿ� ��� ���? �ּ��޾Ƴ����� �о����
-//        setDefaultLayout(); // �⺻ ���̾ƿ� ���� �Լ�
+        setWindowManager(); // Window 占썩본 占쏙옙占쏙옙 占쏙옙占쏙옙, 占쏙옙溜占쏙옙占� dimm占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙
+        setContentView(R.layout.setting_dial); // 占쏙옙占싱억옙慣占� 占쏙옙占싱아울옙, 占쏙옙占싱아울옙 占쏙옙占� 占쏙옙占�? 占쌍쇽옙占쌨아놂옙占쏙옙占쏙옙 占싻어보占쏙옙占쏙옙
+//        setDefaultLayout(); // 占썩본 占쏙옙占싱아울옙 占쏙옙占쏙옙 占쌉쇽옙
         ImageView okBtn = (ImageView)findViewById(R.id.btn_ok);
         FrameLayout soundBtn = (FrameLayout)findViewById(R.id.sound_btn);
         FrameLayout fxBtn = (FrameLayout)findViewById(R.id.fx_btn);
@@ -77,29 +77,29 @@ public class CustomDialog extends Dialog {
 
     }
 
-    // ȣ��Ǿ����� �޾ƿ��°� > context, dialogTitle, dialogDescription, dialogOnClickListener.
-    // ȣ��Ǽ� �޾ƿ����� �� ��Ƽ��Ƽ�� String dialogTitle, String dialogDescription, View.OnClickListener onClickListenerOnCustomDialog�� �Ѱ���
+    // 호占쏙옙퓸占쏙옙占쏙옙占� 占쌨아울옙占승곤옙 > context, dialogTitle, dialogDescription, dialogOnClickListener.
+    // 호占쏙옙퓬占� 占쌨아울옙占쏙옙占쏙옙 占쏙옙 占쏙옙티占쏙옙티占쏙옙 String dialogTitle, String dialogDescription, View.OnClickListener onClickListenerOnCustomDialog占쏙옙 占싼곤옙占쏙옙
     public CustomDialog(Context context) {
         /*
-        �Ѱܹ��� context�� ���̾�α��� �⺻ Theme ����.
-        ��� �ٸ� Dialog �׸��� �����Ѻôµ� ���� �����Ѱ� AppCompat���� �����ϴ� Dialog�̴���
+        占싼겨뱄옙占쏙옙 context占쏙옙 占쏙옙占싱억옙慣占쏙옙占� 占썩본 Theme 占쏙옙占쏙옙.
+        占쏘가占쏙옙 占쌕몌옙 Dialog 占쌓몌옙占쏙옙 占쏙옙占쏙옙占싼봤는듸옙 占쏙옙占쏙옙 占쏙옙占쏙옙占싼곤옙 AppCompat占쏙옙占쏙옙 占쏙옙占쏙옙占싹댐옙 Dialog占싱댐옙占쏙옙
         */
         super(context, R.style.Theme_AppCompat_Light_Dialog);
 
     }
 //    public void setDefaultLayout() {
-//        //�⺻ ���̾ƿ����� ��ü �޾ƿͼ� findViewById�� ����
+//        //占썩본 占쏙옙占싱아울옙占쏙옙占쏙옙 占쏙옙체 占쌨아와쇽옙 findViewById占쏙옙 占쏙옙占쏙옙
 //        Title = (TextView)findViewById(R.id.title);
 //        Description = (TextView)findViewById(R.id.description);
 //        button = (Button)findViewById(R.id.button);
-//        // ���� ��ü ����
+//        // 占쏙옙占쏙옙 占쏙옙체 占쏙옙占쏙옙
 //        Title.setText(DialogTitle);
 //        Description.setText(DialogDescription);
 //        button.setOnClickListener(onClickListenerOnCustomDialog);
 //    }
 
     public void setWindowManager() {
-        //������ �޾ƿͼ� dimAmount����, �̰� �׳� �Ȱǵ���� �ɵ�
+        //占쏙옙占쏙옙占쏙옙 占쌨아와쇽옙 dimAmount占쏙옙占쏙옙, 占싱곤옙 占쌓놂옙 占싫건듸옙占쏙옙占� 占심듸옙
         WindowManager.LayoutParams lpWindow = new WindowManager.LayoutParams();
         lpWindow.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         lpWindow.dimAmount = 0.8f;

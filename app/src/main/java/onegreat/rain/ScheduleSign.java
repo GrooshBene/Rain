@@ -1,22 +1,34 @@
 package onegreat.rain;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 
 public class ScheduleSign extends ActionBarActivity {
     LinearLayout backbtn;
+    EditText textedit;
+    Button btnok;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_sign);
         backbtn = (LinearLayout)findViewById(R.id.backbtn);
+//        btnok= (Button)findViewById(R.id.okbtn);
+//        textedit = (EditText)findViewById(R.id.textedit);
+//        final String s = textedit.getText().toString();
+//        btnok.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent2 = new Intent(ScheduleSign.this, DialogSchedule.class);
+//                intent2.putExtra("asdf", s);
+//            }
+//        });
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

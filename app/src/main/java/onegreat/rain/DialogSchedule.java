@@ -8,12 +8,12 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * Created by GrooshBene on 2015-07-08.
@@ -24,32 +24,40 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
     private ArrayAdapter<String> m_adapter;
     Context context;
     ImageView btn_add;
+    Button ok;
+    EditText textedit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setWindowManager(); // Window �⺻ ���� ����, ��׶��� dimm���� ���� ��
-        setContentView(R.layout.schedule_list); // ���̾�α� ���̾ƿ�, ���̾ƿ� ��� ���? �ּ��޾Ƴ����� �о����
+        setWindowManager(); // Window �⺻ ���� ����, ��׶���? dimm���� ���� ��
+        setContentView(R.layout.schedule_list); // ���̾�α�? ���̾ƿ�, ���̾ƿ� ���? ���?? �ּ��޾Ƴ����� �о����
         btn_add = (ImageView)findViewById(R.id.btn_add);
         ListView scheduleList = (ListView) findViewById(R.id.schedule_list);
+        textedit = (EditText)findViewById(R.id.asdf);
+        ok = (Button)findViewById(R.id.ok);
         Intent intent = getIntent();
         int year = intent.getIntExtra("year",0);
         int month = intent.getIntExtra("month",0);
         int dayOfMonth = intent.getIntExtra("date",0);
         m_adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1);
         scheduleList.setAdapter(m_adapter);
-        m_adapter.add("a");
-        m_adapter.add("k");
-        m_adapter.add("q");
-        m_adapter.add("g");
-        m_adapter.add("d");
-        m_adapter.add("x");
-        m_adapter.add("e");
-        m_adapter.add("s");
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s = textedit.getText().toString();
+                m_adapter.add(s);
+            }
+        });
+
 
         dateText = (TextView) findViewById(R.id.list_day);
-        dateText.setText(year+"년 "+month+"월 "+dayOfMonth+"일");
+        dateText.setText(year+"�� "+month+"�� "+dayOfMonth+"��");
         LinearLayout backbtn = (LinearLayout) findViewById(R.id.backbtn);
+//        Intent intent2 = getIntent();
+//        String list = intent2.getStringExtra("asdf");
+//        m_adapter.add(list);
+
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,11 +75,11 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
 
     }
 
-    // ȣ��Ǿ����� �޾ƿ��°� > context, dialogTitle, dialogDescription, dialogOnClickListener.
-    // ȣ��Ǽ� �޾ƿ����� �� ��Ƽ��Ƽ�� String dialogTitle, String dialogDescription, View.OnClickListener onClickListenerOnCustomDialog�� �Ѱ���
+    // ȣ��Ǿ�����? �޾ƿ��°� > context, dialogTitle, dialogDescription, dialogOnClickListener.
+    // ȣ��Ǽ�? �޾ƿ����� �� ��Ƽ��Ƽ�� String dialogTitle, String dialogDescription, View.OnClickListener onClickListenerOnCustomDialog�� �Ѱ���
 //    public DialogSchedule(Context context, ArrayAdapter<String> m_adapter) {
 //        /*
-//        �Ѱܹ��� context�� ���̾�α��� �⺻ Theme ����.
+//        �Ѱܹ��� context�� ���̾�α���? �⺻ Theme ����.
 //        ��� �ٸ� Diealog �׸��� �����Ѻôµ� ���� �����Ѱ� AppCompat���� �����ϴ� Dialog�̴���
 //        */
 ////        super(context, R.style.Theme_AppCompat_Light_Dialog);
@@ -80,7 +88,7 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
 
 
     public void setWindowManager() {
-        //������ �޾ƿͼ� dimAmount����, �̰� �׳� �Ȱǵ���� �ɵ�
+        //������ �޾ƿͼ� dimAmount����, �̰� �׳� �Ȱǵ����? �ɵ�
         WindowManager.LayoutParams lpWindow = new WindowManager.LayoutParams();
         lpWindow.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         lpWindow.dimAmount = 0.8f;
