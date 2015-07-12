@@ -17,16 +17,16 @@ public class CustomDialog extends Dialog {
 
 //    Button button;
 //    TextView Title, Description;
-//    String DialogTitle, DialogDescription; // ¹Þ¾Æ¿Â String°ªµéÀ» ÀúÀåÇÒ String°´Ã¼ »ý¼º
-//    View.OnClickListener onClickListenerOnCustomDialog; // ¹Þ¾Æ¿Â ¿ÂÅ¬¸¯¸®½ºÅÍ¸¦ ÀúÀåÇÒ View.OnClickListener°´Ã¼ »ý¼º
+//    String DialogTitle, DialogDescription; // tomiï¿½Þ¾Æ¿ï¿½ Stringï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Stringï¿½ï¿½Ã¼ ï¿½ï¿½
+//    View.OnClickListener onClickListenerOnCustomDialog; // ï¿½Þ¾Æ¿ï¿½ ï¿½ï¿½Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ View.OnClickListenerï¿½ï¿½Ã¼ ï¿½ï¿½
     int soundCnt = 1;
     int fxCnt = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setWindowManager(); // Window ±âº» ±¸¼º ¼³Á¤, ¹é±×¶ó¿îµå dimmÁ¤µµ ¼³Á¤ µî
-        setContentView(R.layout.setting_dial); // ´ÙÀÌ¾ó·Î±× ·¹ÀÌ¾Æ¿ô, ·¹ÀÌ¾Æ¿ô °ü·Ã ¼³¸íµµ ÁÖ¼®´Þ¾Æ³ùÀ¸´Ï ÀÐ¾îº¸¼¼¿ä
-//        setDefaultLayout(); // ±âº» ·¹ÀÌ¾Æ¿ô ¼³Á¤ ÇÔ¼ö
+        setWindowManager(); // Window ï¿½âº» ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½×¶ï¿½ï¿½ï¿½ dimmï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+        setContentView(R.layout.setting_dial); // ï¿½ï¿½ï¿½Ì¾ï¿½Î±ï¿½ ï¿½ï¿½ï¿½Ì¾Æ¿ï¿½, ï¿½ï¿½ï¿½Ì¾Æ¿ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½? ï¿½Ö¼ï¿½ï¿½Þ¾Æ³ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾îº¸ï¿½ï¿½ï¿½ï¿½
+//        setDefaultLayout(); // ï¿½âº» ï¿½ï¿½ï¿½Ì¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
         ImageView okBtn = (ImageView)findViewById(R.id.btn_ok);
         FrameLayout soundBtn = (FrameLayout)findViewById(R.id.sound_btn);
         FrameLayout fxBtn = (FrameLayout)findViewById(R.id.fx_btn);
@@ -77,29 +77,29 @@ public class CustomDialog extends Dialog {
 
     }
 
-    // È£ÃâµÇ¾úÀ»¶§ ¹Þ¾Æ¿À´Â°Í > context, dialogTitle, dialogDescription, dialogOnClickListener.
-    // È£ÃâµÇ¼­ ¹Þ¾Æ¿ÔÀ»½Ã º» ¾×Æ¼ºñÆ¼ÀÇ String dialogTitle, String dialogDescription, View.OnClickListener onClickListenerOnCustomDialog¿¡ ³Ñ°ÜÁÜ
+    // È£ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½ï¿½Â°ï¿½ > context, dialogTitle, dialogDescription, dialogOnClickListener.
+    // È£ï¿½ï¿½Ç¼ï¿½ ï¿½Þ¾Æ¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ï¿½Æ¼ï¿½ï¿½ String dialogTitle, String dialogDescription, View.OnClickListener onClickListenerOnCustomDialogï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½ï¿½
     public CustomDialog(Context context) {
         /*
-        ³Ñ°Ü¹ÞÀº context¿Í ´ÙÀÌ¾ó·Î±×ÀÇ ±âº» Theme Á¤ÀÇ.
-        ¸î°¡Áö ´Ù¸¥ Dialog Å×¸¶¸¦ Àû¿ë½ÃÄÑºÃ´Âµ¥ °¡Àå ÀûÇÕÇÑ°Ô AppCompat¿¡¼­ Áö¿øÇÏ´Â DialogÀÌ´õ¶ó
+        ï¿½Ñ°Ü¹ï¿½ï¿½ï¿½ contextï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±ï¿½ï¿½ï¿½ ï¿½âº» Theme ï¿½ï¿½ï¿½ï¿½.
+        ï¿½î°¡ï¿½ï¿½ ï¿½Ù¸ï¿½ Dialog ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ÑºÃ´Âµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ°ï¿½ AppCompatï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Dialogï¿½Ì´ï¿½ï¿½ï¿½
         */
         super(context, R.style.Theme_AppCompat_Light_Dialog);
 
     }
 //    public void setDefaultLayout() {
-//        //±âº» ·¹ÀÌ¾Æ¿ô¿¡¼­ °´Ã¼ ¹Þ¾Æ¿Í¼­ findViewById·Î ¿¬°á
+//        //ï¿½âº» ï¿½ï¿½ï¿½Ì¾Æ¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½Þ¾Æ¿Í¼ï¿½ findViewByIdï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 //        Title = (TextView)findViewById(R.id.title);
 //        Description = (TextView)findViewById(R.id.description);
 //        button = (Button)findViewById(R.id.button);
-//        // °¢°¢ °´Ã¼ ¼³Á¤
+//        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 //        Title.setText(DialogTitle);
 //        Description.setText(DialogDescription);
 //        button.setOnClickListener(onClickListenerOnCustomDialog);
 //    }
 
     public void setWindowManager() {
-        //À©µµ¿ì ¹Þ¾Æ¿Í¼­ dimAmount¼³Á¤, ÀÌ°Ç ±×³É ¾È°Çµå·Áµµ µÉµí
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿Í¼ï¿½ dimAmountï¿½ï¿½ï¿½ï¿½, ï¿½Ì°ï¿½ ï¿½×³ï¿½ ï¿½È°Çµï¿½ï¿½ï¿½ï¿½ ï¿½Éµï¿½
         WindowManager.LayoutParams lpWindow = new WindowManager.LayoutParams();
         lpWindow.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         lpWindow.dimAmount = 0.8f;

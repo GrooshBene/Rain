@@ -39,6 +39,7 @@ public class calendar extends Activity {
         setContentView(R.layout.activity_calendar);
         cal = (CalendarView)findViewById(R.id.calendar);
         backbtn = (LinearLayout)findViewById(R.id.back_ic);
+        cal.setShowWeekNumber(false);
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

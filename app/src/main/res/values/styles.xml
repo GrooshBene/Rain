@@ -5,5 +5,10 @@
 
         <!-- Customize your theme here. -->
     </style>
+    <style name="Widget.CalendarView.Custom" parent="android:Widget.CalendarView">
+        <item name="android:focusedMonthDateColor">#00ff00</item>
+        <item name="android:showWeekNumber">false</item>
+        <item name="android:numColumns">7</item>
+    </style>
 
 </resources>

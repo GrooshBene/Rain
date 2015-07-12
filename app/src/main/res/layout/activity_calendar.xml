@@ -21,7 +21,7 @@
             <Space
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5"/>
+                android:layout_weight="0.3"/>
            <LinearLayout
                android:layout_width="1dp"
                android:layout_height="match_parent"
@@ -32,7 +32,7 @@
                <ImageView
                    android:layout_width="1dp"
                    android:layout_height="match_parent"
-                   android:layout_weight="1.5"
+                   android:layout_weight="2"
                    android:src="@drawable/ic_back"/>
                <Space
                    android:layout_width="1dp"
@@ -98,6 +98,7 @@
             android:layout_height="1dp"
             android:layout_weight="8"
             android:id="@+id/calendar"></CalendarView>
+            <!--android:theme="@style/Widget.CalendarView.Custom"></CalendarView>-->
          <!--a<GridView-->
             <!--android:id="@+id/calendarGrid"-->
             <!--android:layout_width="match_parent"-->
