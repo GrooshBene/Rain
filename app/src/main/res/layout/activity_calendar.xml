@@ -51,57 +51,62 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_weight="0.5"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:weightSum="10"
-            android:orientation="horizontal">
-            <Space
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"/>
-            <ImageView
-                android:id="@+id/last_month"
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:src="@drawable/ic_month_back"/>
-    <!--<Space-->
-        <!--android:layout_width="1dp"-->
-        <!--android:layout_height="match_parent" -->
-        <!--android:layout_weight="0.5"/>-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:weightSum="10"-->
+            <!--android:orientation="horizontal">-->
+            <!--<Space-->
+                <!--android:layout_width="1dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="2"/>-->
+            <!--<ImageView-->
+                <!--android:id="@+id/last_month"-->
+                <!--android:layout_width="1dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="0.5"-->
+                <!--android:src="@drawable/ic_month_back"/>-->
+    <!--&lt;!&ndash;<Space&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="1dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="match_parent" &ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_weight="0.5"/>&ndash;&gt;-->
 
-            <TextView
-                android:id="@+id/calendarTitle"
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:gravity="center"
-                android:text="섹스년 섹스월"
-                android:textColor="#6ec6f8"
-                android:textSize="25dp"
-                android:textStyle="bold" />
-            <ImageView
-                android:id="@+id/next_month"
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:src="@drawable/ic_month_front"/>
-        </LinearLayout>
-        <Space
+            <!--<TextView-->
+                <!--android:id="@+id/calendarTitle"-->
+                <!--android:layout_width="1dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="5"-->
+                <!--android:gravity="center"-->
+                <!--android:text="섹스년 섹스월"-->
+                <!--android:textColor="#6ec6f8"-->
+                <!--android:textSize="25dp"-->
+                <!--android:textStyle="bold" />-->
+            <!--<ImageView-->
+                <!--android:id="@+id/next_month"-->
+                <!--android:layout_width="1dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="0.5"-->
+                <!--android:src="@drawable/ic_month_front"/>-->
+        <!--</LinearLayout>-->
+        <!--<Space-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:layout_weight="1"/>-->
+        <CalendarView
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_weight="1"/>
-        <GridView
-            android:id="@+id/calendarGrid"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_weight="5.5"
-            android:layout_marginTop="10dp"
-            android:listSelector="@drawable/grid_view_select"
-            android:numColumns="7"
-            android:stretchMode="columnWidth" />
+            android:layout_weight="8"
+            android:id="@+id/calendar"></CalendarView>
+         <!--a<GridView-->
+            <!--android:id="@+id/calendarGrid"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:layout_weight="5.5"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:listSelector="@drawable/grid_view_select"-->
+            <!--android:numColumns="7"-->
+            <!--android:stretchMode="columnWidth" />-->
 
 
 
