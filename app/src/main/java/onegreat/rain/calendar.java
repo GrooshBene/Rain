@@ -41,7 +41,9 @@ public class calendar extends Activity {
         cal.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView calendarView, int year, int month, int dayOfMonth) {
-                Toast.makeText(getBaseContext(),"Selected Date is\n\n"+dayOfMonth+" : "+month+1+" : "+year, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(calendar.this, DialogSchedule.class);
+                startActivity(intent);
+                Toast.makeText(getBaseContext(),"Selected Date is\n\n"+dayOfMonth+" : "+month+" : "+year, Toast.LENGTH_SHORT).show();
             }
         });
 
