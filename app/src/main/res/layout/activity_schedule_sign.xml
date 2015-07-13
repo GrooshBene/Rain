@@ -39,25 +39,8 @@
                 android:layout_weight="5"
                 android:src="@drawable/chunbul"/>
         </LinearLayout>
+
     </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_weight="2"
-        android:id="@+id/asdf"
-        android:text="안되요 아직"
-        android:gravity="center"
-        android:textColor="#42a5f5"
-        android:textSize="23dp"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textedit"
-        android:text="입력해보든가"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ok"
-        android:id="@+id/okbtn"/>
+
 
 </LinearLayout>

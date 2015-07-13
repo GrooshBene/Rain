@@ -1,7 +1,10 @@
 package onegreat.rain;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CalendarView;
@@ -21,15 +24,20 @@ public class calendar extends Activity {
 //    ArrayAdapter<String> m_adapter;
     CalendarView cal;
     LinearLayout backbtn;
+    int color;
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
         cal = (CalendarView)findViewById(R.id.calendar);
         backbtn = (LinearLayout)findViewById(R.id.back_ic);
+        color = Color.parseColor("#fefefe");
         cal.setShowWeekNumber(false);
         cal.setSelectedWeekBackgroundColor(0);
+        cal.setFocusedMonthDateColor(color);
+
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,7 +54,7 @@ public class calendar extends Activity {
                 startActivity(intent);
 
             }
-        });
+       });
 
 ////        m_adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1);
 //
