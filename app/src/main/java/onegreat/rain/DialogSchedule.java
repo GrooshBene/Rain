@@ -45,23 +45,12 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
         int month = intent.getIntExtra("month",0);
         int dayOfMonth = intent.getIntExtra("date",0);
         dataArr = new ArrayList<String>();
-        dataArr.add(pref1.getString("asdf","asdf"));
         m_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice,dataArr);
         scheduleList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         scheduleList.setAdapter(m_adapter);
 //        pref1 = getSharedPreferences("DialogSchedule",0);
 //        edit1 = pref1.edit();
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//               String str = textedit.getText().toString();
-////                if(str.length()!=0) {
-//////                    textedit.setText("");
-//////                    dataArr.add(str);
-//////                    m_adapter.notifyDataSetChanged();
-////                }
-            }
-        });
+
 
 //        pref1 = getSharedPreferences("DialogSchedule",0);
 //        edit1 = pref1.edit();
@@ -71,8 +60,8 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
 //
 //        String s = pref1.getString("asdf","no string");
 //
-        dateText = (TextView) findViewById(R.id.list_day);
-        dateText.setText(year+"년 "+month+"월 "+dayOfMonth+"일");
+//        dateText = (TextView) findViewById(R.id.list_day);
+//        dateText.setText(year+"년 "+month+"월 "+dayOfMonth+"일");
         LinearLayout backbtn = (LinearLayout) findViewById(R.id.backbtn);
 //        Intent intent2 = getIntent();
 //        String list = intent2.getStringExtra("asdf");
