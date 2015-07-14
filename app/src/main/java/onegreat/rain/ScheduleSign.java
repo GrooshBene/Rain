@@ -36,6 +36,7 @@ public class ScheduleSign extends ActionBarActivity {
     LinearLayout gamepicker;
     ImageView btnok;
     int cnt;
+    SharedPreferences pref2;
     TextView tv_time;
     TextView tv_date;
     int year, month, day,hour, minute;
@@ -43,6 +44,7 @@ public class ScheduleSign extends ActionBarActivity {
     int color_te;
     public SharedPreferences pref1;
     SharedPreferences.Editor edit1;
+    SharedPreferences.Editor edit2;
     EditText textedit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +52,9 @@ public class ScheduleSign extends ActionBarActivity {
         setContentView(R.layout.activity_schedule_sign);
         color_te = Color.parseColor("#84c6ed");
         GregorianCalendar calendar = new GregorianCalendar();
-        pref1 = getSharedPreferences("ScheduleSign",0);
-        edit1 = pref1.edit();
-        cnt = pref1.getInt("count",0);
+        pref2 = getSharedPreferences("countPref", 0);
+        edit2 = pref2.edit();
+        cnt = pref2.getInt("count",0);
         tv_date = (TextView)findViewById(R.id.tv_date);
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
@@ -65,6 +67,8 @@ public class ScheduleSign extends ActionBarActivity {
         tv_time = (TextView)findViewById(R.id.tv_time);
         textedit = (EditText)findViewById(R.id.edittext);
         tv_time.setTypeface(Typeface.createFromAsset(getAssets(), "RobotoCondensed-Light.ttf"));
+        textedit.setTypeface(Typeface.createFromAsset(getAssets(),"NanumPen.ttf"));
+        tv_date.setTypeface(Typeface.createFromAsset(getAssets(),"NanumPen.ttf"));
         String time_now = String.format("%d : %d",hour,minute);
         tv_time.setText(time_now);
 
@@ -102,7 +106,10 @@ public class ScheduleSign extends ActionBarActivity {
         btnok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                edit1.putString("schedule" + cnt, textedit.getText().toString());
+                String text_e = textedit.getText().toString();
+                if(text_e.equals(""))
+                    text_e="\0";
+                edit1.putString("schedule" + cnt, text_e);
                 edit1.commit();
 
                 finish();
@@ -165,6 +172,8 @@ public class ScheduleSign extends ActionBarActivity {
 
             String msg = String.format("%d년 %d월 %d일", year,monthOfYear+1, dayOfMonth);
             tv_date.setText(msg);
+            if(msg.equals(""))
+                msg = "\0";
             edit1.putString("date"+cnt,msg);
 
 

@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -19,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -55,6 +57,7 @@ public class calendar extends ActionBarActivity implements View.OnClickListener,
                 finish();
             }
         });
+        calendarViewTitle.setTypeface(Typeface.createFromAsset(getAssets(),"NanumPen.ttf"));
     }
 
     @Override

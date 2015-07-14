@@ -1,6 +1,7 @@
 package onegreat.rain;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -45,7 +49,6 @@ public class DataAdapter extends ArrayAdapter<CData> {
                 ImageView Image = (ImageView)view.findViewById(R.id.mImage);
                 TextView mText = (TextView)view.findViewById(R.id.mText);
                 TextView mDate = (TextView)view.findViewById(R.id.mDate);
-
                 mText.setText(data.getContent_label()+"");
                 mDate.setText(data.getDescription()+"");
                 Image.setImageResource(data.getIcon());

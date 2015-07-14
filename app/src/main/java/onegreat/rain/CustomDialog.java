@@ -14,7 +14,6 @@ import android.widget.ImageView;
 public class CustomDialog extends Dialog {
 
 
-
 //    Button button;
 //    TextView Title, Description;
 //    String DialogTitle, DialogDescription; // tomi占쌨아울옙 String占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 String占쏙옙체 占쏙옙
