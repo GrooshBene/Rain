@@ -1,7 +1,11 @@
 package onegreat.rain;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.media.Image;
 import android.os.Bundle;
@@ -11,13 +15,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import org.w3c.dom.Text;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 
 public class ScheduleSign extends ActionBarActivity {
@@ -26,29 +35,39 @@ public class ScheduleSign extends ActionBarActivity {
     LinearLayout musicpicker;
     LinearLayout gamepicker;
     ImageView btnok;
+    int cnt;
     TextView tv_time;
-    Typeface typeface1;
+    TextView tv_date;
+    int year, month, day,hour, minute;
 
+    int color_te;
     public SharedPreferences pref1;
     SharedPreferences.Editor edit1;
-    public int cnt = 0;
     EditText textedit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_sign);
+        color_te = Color.parseColor("#84c6ed");
+        GregorianCalendar calendar = new GregorianCalendar();
+        pref1 = getSharedPreferences("ScheduleSign",0);
+        edit1 = pref1.edit();
+        cnt = pref1.getInt("count",0);
+        tv_date = (TextView)findViewById(R.id.tv_date);
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+        hour = calendar.get(Calendar.HOUR_OF_DAY);
+        minute = calendar.get(Calendar.MINUTE);
         datepicker = (LinearLayout)findViewById(R.id.datepicker);
         gamepicker = (LinearLayout)findViewById(R.id.gamepicker);
         musicpicker = (LinearLayout)findViewById(R.id.musicpicker);
         tv_time = (TextView)findViewById(R.id.tv_time);
         textedit = (EditText)findViewById(R.id.edittext);
-        tv_time.setTypeface(Typeface.createFromAsset(getAssets(),"RobotoCondensed-Light.ttf"));
-        datepicker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"없어",Toast.LENGTH_SHORT).show();
-            }
-        });
+        tv_time.setTypeface(Typeface.createFromAsset(getAssets(), "RobotoCondensed-Light.ttf"));
+        String time_now = String.format("%d : %d",hour,minute);
+        tv_time.setText(time_now);
+
 //        gamepicker.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -58,22 +77,34 @@ public class ScheduleSign extends ActionBarActivity {
         musicpicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"ㅇㅇ",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "ㅇㅇ", Toast.LENGTH_SHORT).show();
             }
         });
         backbtn = (LinearLayout)findViewById(R.id.backbtn);
         btnok= (ImageView)findViewById(R.id.btn_ok);
 //        textedit = (EditText)findViewById(R.id.textedit);
-        pref1 = getSharedPreferences("Schedule",0);
+        pref1 = getSharedPreferences("Schedule", 0);
         edit1 = pref1.edit();
 //        final String s = textedit.getText().toString();
+
+        datepicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(ScheduleSign.this, dateSetListener, year, month, day).show();
+            }
+        });
+        tv_time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new TimePickerDialog(ScheduleSign.this, timeSetListener, hour, minute, false).show();
+            }
+        });
         btnok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 edit1.putString("schedule" + cnt, textedit.getText().toString());
-                edit1.putInt("count", cnt);
                 edit1.commit();
-                cnt++;
+
                 finish();
             }
         });
@@ -104,6 +135,42 @@ public class ScheduleSign extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_schedule_sign, menu);
         return true;
     }
+    private TimePickerDialog.OnTimeSetListener timeSetListener = new TimePickerDialog.OnTimeSetListener() {
+
+
+        @Override
+
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+            // TODO Auto-generated method stub
+
+            String msg = String.format(" %d : %d",hourOfDay, minute);
+            tv_time.setText(msg);
+
+        }
+
+    };
+
+    private DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+
+
+
+        @Override
+
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+
+                              int dayOfMonth) {
+
+            // TODO Auto-generated method stub
+
+            String msg = String.format("%d년 %d월 %d일", year,monthOfYear+1, dayOfMonth);
+            tv_date.setText(msg);
+            edit1.putString("date"+cnt,msg);
+
+
+        }
+
+    };
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

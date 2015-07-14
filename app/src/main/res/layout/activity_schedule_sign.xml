@@ -1,7 +1,10 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="10"
     android:background="@drawable/bg"
@@ -53,7 +56,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_weight="5"
+                android:layout_weight="4"
                 android:background="@drawable/bg_posting_ac"
                 android:weightSum="10"
                 android:orientation="vertical">
@@ -115,9 +118,8 @@
                         android:layout_weight="6"
                         android:id="@+id/tv_time"
                         android:textColor="#ddf0fa"
-                        android:text="17:00"
                         android:gravity="center"
-                        android:textSize="81sp"
+                        android:textSize="72sp"
                         android:typeface="serif"
                         />
                 </LinearLayout>
@@ -126,7 +128,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_weight="6"
+                android:layout_weight="5"
                 android:weightSum="10"
                 android:orientation="vertical">
                 <LinearLayout
@@ -155,14 +157,16 @@
                         android:layout_height="match_parent"
                         android:layout_weight="6"
                         android:textSize="45px"
+                        android:id="@+id/tv_date"
+                        android:text="날짜를 설정해 주세요."
                         android:textColor="#77acd7"
                         android:gravity="center|left"
-                        android:text="2015년 5월 10일"/>
+                        />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_weight="2.5"
+                    android:layout_weight="2"
                     android:weightSum="10"
                     android:orientation="horizontal"
                     android:id="@+id/gamepicker">
@@ -189,7 +193,13 @@
                         <!--android:gravity="center|left"-->
                         <!--android:text="게임 설정"/>-->
                     <EditText
-                        android:layout_width="match_parent"
+                        android:layout_width="1dp"
+                        android:layout_weight="7"
+                        android:hint="내용 작성"
+                        android:textSize="45px"
+                        android:textColorHint="#77acd7"
+                        android:backgroundTint="#42a5f5"
+
                         android:layout_height="match_parent"
                         android:id="@+id/edittext"/>
                 </LinearLayout>
@@ -237,7 +247,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_weight="1.5"
+                android:layout_weight="1"
                 android:weightSum="10"
                 android:orientation="horizontal"
                 android:gravity="right">
@@ -259,5 +269,5 @@
         </LinearLayout>
     </FrameLayout>
 
-
 </LinearLayout>
+</AbsoluteLayout>

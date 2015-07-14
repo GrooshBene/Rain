@@ -38,32 +38,29 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
     ImageView btn_add;
     Button ok;
     SharedPreferences pref1;
+    int cnt;
+    ListView scheduleList;
+    LinearLayout backbtn;
+    ArrayAdapter m_adapter;
+    DataAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setWindowManager(); // Window �⺻ ���� ����, ��׶���? dimm���� ���� ��
         setContentView(R.layout.schedule_list); // ���̾�α�? ���̾ƿ�, ���̾ƿ� ���? ���?? �ּ��޾Ƴ����� �о����
-        dataArr= new ArrayList<>();
-        ArrayAdapter m_adapter;
+
         btn_add = (ImageView)findViewById(R.id.btn_add);
-        ListView scheduleList = (ListView) findViewById(R.id.schedule_list);
+        scheduleList = (ListView) findViewById(R.id.schedule_list);
         Intent intent = getIntent();
         int year = intent.getIntExtra("year",0);
         int month = intent.getIntExtra("month",0);
-        int dayOfMonth = intent.getIntExtra("date",0);
+        int dayOfMonth = intent.getIntExtra("date", 0);
         scheduleList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        scheduleList.setAdapter(new DataAdapter(DialogSchedule.this, dataArr));
-        pref1 = getSharedPreferences("Schedule",0);
-        int cnt = pref1.getInt("count",10);
-        dataArr.add(new CData(getApplicationContext(),R.drawable.ic_type_edu,"공부하기",""));
-        dataArr.add(new CData(getApplicationContext(),R.drawable.ic_type_etc,"야동보기",""));
-        dataArr.add(new CData(getApplicationContext(),R.drawable.ic_type_etc,"운동하기",""));
-//        for(int i=0;i<=cnt;i++) {
-//            String s = pref1.getString("schedule"+i, "ㅁㄴㅇㄹ");
-//            dataArr.add(new CData(getApplicationContext(),R.drawable.ic_music,s,s));
-//            //프리퍼런스 불러오
-//        }
+        dataArr= new ArrayList<CData>();
+
+        adapter = new DataAdapter(DialogSchedule.this,dataArr);
+        scheduleList.setAdapter(adapter);
 
 
 
@@ -79,7 +76,7 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
 //
 //        dateText = (TextView) findViewById(R.id.list_day);
 //        dateText.setText(year+"년 "+month+"월 "+dayOfMonth+"일");
-        LinearLayout backbtn = (LinearLayout) findViewById(R.id.backbtn);
+        backbtn = (LinearLayout) findViewById(R.id.backbtn);
 //        Intent intent2 = getIntent();
 //        String list = intent2.getStringExtra("asdf");
 //        m_adapter.add(list);
@@ -96,6 +93,8 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
             public void onClick(View view) {
                 Intent intent = new Intent(DialogSchedule.this, ScheduleSign.class);
                 startActivity(intent);
+                cnt++;
+                finish();
             }
         });
 
@@ -125,8 +124,21 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         TextView s = (TextView)findViewById(R.id.mText);
-        Toast.makeText(getApplicationContext(),s.getText().toString(),Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), s.getText().toString(), Toast.LENGTH_SHORT).show();
 
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        pref1 = getSharedPreferences("Schedule",0);
+        cnt = pref1.getInt("count",0);
+        for(int i=0;i<=cnt;i++) {
+            String s = pref1.getString("schedule"+i, "");
+            String date = pref1.getString("date"+i, "");
+            dataArr.add(new CData(getApplicationContext(),R.drawable.ic_music,s,date));
+            //프리퍼런스 불러오
+        }
+        //TODO 넣을 코드
     }
 
 }

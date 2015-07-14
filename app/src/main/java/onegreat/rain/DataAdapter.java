@@ -41,12 +41,15 @@ public class DataAdapter extends ArrayAdapter<CData> {
         final CData data = this.getItem(position);
         if (data != null) {
             //화면 출력
-            ImageView mImage = (ImageView)v.findViewById(R.id.mImage);
-            TextView mText = (TextView)v.findViewById(R.id.mText);
-            TextView mDate = (TextView)v.findViewById(R.id.mDate);
-            mText.setText(data.getContent_label());
-            mDate.setText(data.getDescription());
-            mImage.setImageResource(data.getIcon());
+
+                ImageView Image = (ImageView)view.findViewById(R.id.mImage);
+                TextView mText = (TextView)view.findViewById(R.id.mText);
+                TextView mDate = (TextView)view.findViewById(R.id.mDate);
+
+                mText.setText(data.getContent_label()+"");
+                mDate.setText(data.getDescription()+"");
+                Image.setImageResource(data.getIcon());
+
         }
         return view;
     }
