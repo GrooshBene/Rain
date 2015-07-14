@@ -14,14 +14,18 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import org.w3c.dom.Text;
 
@@ -34,7 +38,9 @@ public class ScheduleSign extends ActionBarActivity {
     LinearLayout datepicker;
     LinearLayout musicpicker;
     LinearLayout gamepicker;
-    ImageView btnok;
+    Spinner spinner_object;
+    FloatingActionButton btnok;
+    String result_object;
     int cnt;
     SharedPreferences pref2;
     TextView tv_time;
@@ -78,19 +84,24 @@ public class ScheduleSign extends ActionBarActivity {
 //                Toast.makeText(getApplicationContext(),"구현중",Toast.LENGTH_SHORT).show();
 //            }
 //        });
-        musicpicker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "ㅇㅇ", Toast.LENGTH_SHORT).show();
-            }
-        });
+        spinner_object = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter_object = ArrayAdapter
+                .createFromResource(this, R.array.spinner_object,
+                        android.R.layout.simple_spinner_item);
+        adapter_object.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_object.setAdapter(adapter_object);
+        result_object=(String)spinner_object.getSelectedItem();
         backbtn = (LinearLayout)findViewById(R.id.backbtn);
-        btnok= (ImageView)findViewById(R.id.btn_ok);
+        btnok= (FloatingActionButton)findViewById(R.id.btn_ok);
 //        textedit = (EditText)findViewById(R.id.textedit);
         pref1 = getSharedPreferences("Schedule", 0);
         edit1 = pref1.edit();
 //        final String s = textedit.getText().toString();
 
+//        btnok.setSize(FloatingActionButton.SIZE_MINI);
+        btnok.setColorNormalResId(R.color.white);
+        btnok.setColorPressedResId(R.color.white_pressed);
+        btnok.setStrokeVisible(false);
         datepicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -110,6 +121,7 @@ public class ScheduleSign extends ActionBarActivity {
                 if(text_e.equals(""))
                     text_e="\0";
                 edit1.putString("schedule" + cnt, text_e);
+                edit1.putString("category"+cnt, result_object);
                 edit1.commit();
 
                 finish();
@@ -133,6 +145,7 @@ public class ScheduleSign extends ActionBarActivity {
 //        edit1.commit();
 //
 //        String s = pref1.getString("asdf","no string");
+
 
     }
 

@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +24,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
+
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -38,13 +41,13 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
     enum Direction {LEFT, RIGHT;}
     ArrayList<CData> dataArr;
     Context context;
-    ImageView btn_add;
-    Button ok;
+    FloatingActionButton btn_add;
     SharedPreferences pref2;
     SharedPreferences pref1;
     SharedPreferences.Editor edit2;
     SharedPreferences.Editor edit1;
     int cnt=0;
+    int res;
     ListView scheduleList;
     LinearLayout backbtn;
     ArrayAdapter m_adapter;
@@ -55,7 +58,9 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
         super.onCreate(savedInstanceState);
         setWindowManager(); // Window �⺻ ���� ����, ��׶���? dimm���� ���� ��
         setContentView(R.layout.schedule_list); // ���̾�α�? ���̾ƿ�, ���̾ƿ� ���? ���?? �ּ��޾Ƴ����� �о����
-        btn_add = (ImageView) findViewById(R.id.btn_add);
+        btn_add = (FloatingActionButton) findViewById(R.id.btn_add);
+        btn_add.setColorPressedResId(R.color.white_pressed);
+        btn_add.setColorNormalResId(R.color.white);
         scheduleList = (ListView) findViewById(R.id.schedule_list);
         Intent intent = getIntent();
         int year = intent.getIntExtra("year", 0);
@@ -115,8 +120,23 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
         for (int i = 0;/*!(pref1.getString("Schedule"+i,"default").equals("default"))*/ i <= cnt; i++) {
             String s = pref1.getString("schedule" + i, String.format("\0"));
             String date = pref1.getString("date" + i, String.format("\0"));
+            String category= pref1.getString("category"+i,String.format("\0"));
+            switch(category){
+                case "외출":
+                    res = R.drawable.ic_type_exr;
+                    break;
+                case "식사":
+                    res = R.drawable.ic_type_food;
+                    break;
+                case "자기개발/업무":
+                    res = R.drawable.ic_type_edu;
+                    break;
+                case "기타":
+                    res = R.drawable.ic_type_etc;
+                    break;
+            }
             if (s.equals("\0") && date.equals("\0")) continue;
-            dataArr.add(new CData(getApplicationContext(), R.drawable.ic_music, s, date,i));
+            dataArr.add(new CData(getApplicationContext(),res, s, date,i));
             //프리퍼런스 불러오기
         }
         SwipeDismissListViewTouchListener touchListener =
@@ -130,9 +150,8 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
                             @Override
                             public void onDismiss(ListView listView, int[] reverseSortedPositions) {
                                 for (int position : reverseSortedPositions) {
-                                    adapter.remove(adapter.getItem(position));
-                                    //여기서 오류
                                     CData v = adapter.getItem(position);
+                                    int getcnt = adapter.getCount();
                                     int id = v.id_position;
                                     String temp;
                                     String temp_date;
@@ -141,6 +160,22 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
                                     edit1.putString("schedule"+id,temp);
                                     edit1.putString("date"+id,temp_date);
                                     edit1.commit();
+
+                                    adapter.remove(adapter.getItem(position));
+                                    if(getcnt==0)
+                                        finish();
+                                    //여기서 오류
+
+//                                    CData v = adapter.getItem(position);
+//
+//                                    int id = v.id_position;
+//                                    String temp;
+//                                    String temp_date;
+//                                    temp = "\0";
+//                                    temp_date = "\0";
+//                                    edit1.putString("schedule"+id,temp);
+//                                    edit1.putString("date"+id,temp_date);
+//                                    edit1.commit();
 
                                 }
                                 adapter.notifyDataSetChanged();

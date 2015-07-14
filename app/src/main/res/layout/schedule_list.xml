@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center"
@@ -88,16 +89,21 @@
                 android:weightSum="10"
                 android:orientation="horizontal">
 
-                <ImageView
+
+
+                <com.getbase.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btn_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    fab:fab_colorNormal="@color/white"
+                    fab:fab_colorPressed="@color/white_pressed"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="16dp"/>
+                <Space
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:src="@drawable/btn_add"
-                    android:id="@+id/btn_add"/>
-                <Space
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"/>
+                    android:layout_weight="0.5"/>
             </LinearLayout>
             </LinearLayout>
             </FrameLayout>
