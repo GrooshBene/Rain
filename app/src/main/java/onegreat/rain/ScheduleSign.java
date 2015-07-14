@@ -2,6 +2,8 @@ package onegreat.rain;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
+import android.media.Image;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.support.v7.app.ActionBarActivity;
@@ -10,8 +12,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 
 public class ScheduleSign extends ActionBarActivity {
@@ -19,13 +25,14 @@ public class ScheduleSign extends ActionBarActivity {
     LinearLayout datepicker;
     LinearLayout musicpicker;
     LinearLayout gamepicker;
-    EditText textedit;
-    Button btnok;
+    ImageView btnok;
+    TextView tv_time;
+    Typeface typeface1;
+
     public SharedPreferences pref1;
     SharedPreferences.Editor edit1;
     public int cnt = 0;
-    public SharedPreferences count;
-    SharedPreferences.Editor countedit;
+    EditText textedit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,18 +40,21 @@ public class ScheduleSign extends ActionBarActivity {
         datepicker = (LinearLayout)findViewById(R.id.datepicker);
         gamepicker = (LinearLayout)findViewById(R.id.gamepicker);
         musicpicker = (LinearLayout)findViewById(R.id.musicpicker);
+        tv_time = (TextView)findViewById(R.id.tv_time);
+        textedit = (EditText)findViewById(R.id.edittext);
+        tv_time.setTypeface(Typeface.createFromAsset(getAssets(),"RobotoCondensed-Light.ttf"));
         datepicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(),"없어",Toast.LENGTH_SHORT).show();
             }
         });
-        gamepicker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"구현중",Toast.LENGTH_SHORT).show();
-            }
-        });
+//        gamepicker.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(getApplicationContext(),"구현중",Toast.LENGTH_SHORT).show();
+//            }
+//        });
         musicpicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,23 +62,21 @@ public class ScheduleSign extends ActionBarActivity {
             }
         });
         backbtn = (LinearLayout)findViewById(R.id.backbtn);
-//        btnok= (Button)findViewById(R.id.okbtn);
+        btnok= (ImageView)findViewById(R.id.btn_ok);
 //        textedit = (EditText)findViewById(R.id.textedit);
         pref1 = getSharedPreferences("Schedule",0);
         edit1 = pref1.edit();
-        count = getSharedPreferences("ScheduleCount",0);
-        countedit = count.edit();
 //        final String s = textedit.getText().toString();
-//        btnok.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                edit1.putString("schedule"+cnt, "asdf");
-////                edit1.commit();
-////                countedit.putInt("count",cnt);
-////                countedit.commit();
-////                cnt++;
-//            }
-//        });
+        btnok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edit1.putString("schedule" + cnt, textedit.getText().toString());
+                edit1.putInt("count", cnt);
+                edit1.commit();
+                cnt++;
+                finish();
+            }
+        });
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

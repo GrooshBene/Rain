@@ -1,20 +1,28 @@
 package onegreat.rain;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -24,33 +32,42 @@ import java.util.ArrayList;
 public class DialogSchedule extends Activity implements AdapterView.OnItemClickListener {
 
     TextView dateText;
-    private ArrayAdapter<String> m_adapter;
-    ArrayList<String> dataArr;
+
+    ArrayList<CData> dataArr;
     Context context;
     ImageView btn_add;
     Button ok;
-    EditText textedit;
     SharedPreferences pref1;
-    SharedPreferences.Editor edit1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setWindowManager(); // Window �⺻ ���� ����, ��׶���? dimm���� ���� ��
         setContentView(R.layout.schedule_list); // ���̾�α�? ���̾ƿ�, ���̾ƿ� ���? ���?? �ּ��޾Ƴ����� �о����
+        dataArr= new ArrayList<>();
+        ArrayAdapter m_adapter;
         btn_add = (ImageView)findViewById(R.id.btn_add);
         ListView scheduleList = (ListView) findViewById(R.id.schedule_list);
         Intent intent = getIntent();
         int year = intent.getIntExtra("year",0);
         int month = intent.getIntExtra("month",0);
         int dayOfMonth = intent.getIntExtra("date",0);
-        dataArr = new ArrayList<String>();
-        m_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice,dataArr);
         scheduleList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        scheduleList.setAdapter(m_adapter);
-//        pref1 = getSharedPreferences("DialogSchedule",0);
-//        edit1 = pref1.edit();
+        scheduleList.setAdapter(new DataAdapter(DialogSchedule.this, dataArr));
+        pref1 = getSharedPreferences("Schedule",0);
+        int cnt = pref1.getInt("count",10);
+        dataArr.add(new CData(getApplicationContext(),R.drawable.ic_type_edu,"공부하기",""));
+        dataArr.add(new CData(getApplicationContext(),R.drawable.ic_type_etc,"야동보기",""));
+        dataArr.add(new CData(getApplicationContext(),R.drawable.ic_type_etc,"운동하기",""));
+//        for(int i=0;i<=cnt;i++) {
+//            String s = pref1.getString("schedule"+i, "ㅁㄴㅇㄹ");
+//            dataArr.add(new CData(getApplicationContext(),R.drawable.ic_music,s,s));
+//            //프리퍼런스 불러오
+//        }
 
+
+
+//
 
 //        pref1 = getSharedPreferences("DialogSchedule",0);
 //        edit1 = pref1.edit();
@@ -84,6 +101,7 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
 
     }
 
+
     // ȣ��Ǿ�����? �޾ƿ��°� > context, dialogTitle, dialogDescription, dialogOnClickListener.
     // ȣ��Ǽ�? �޾ƿ����� �� ��Ƽ��Ƽ�� String dialogTitle, String dialogDescription, View.OnClickListener onClickListenerOnCustomDialog�� �Ѱ���
 //    public DialogSchedule(Context context, ArrayAdapter<String> m_adapter) {
@@ -106,14 +124,10 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//        ListView list = (ListView) findViewById(R.id.schedule_list);
-//        Intent intent = new Intent(DialogSchedule.this, ScheduleSign.class);
-//        intent.putExtra("key", (char[]) list.getItemAtPosition(position));
-//        startActivity(intent);
+        TextView s = (TextView)findViewById(R.id.mText);
+        Toast.makeText(getApplicationContext(),s.getText().toString(),Toast.LENGTH_SHORT).show();
 
     }
-
 
 }
 

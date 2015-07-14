@@ -25,6 +25,8 @@ public class calendar extends Activity {
     CalendarView cal;
     LinearLayout backbtn;
     int color;
+    int unsel_color;
+    int linecolor;
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
@@ -34,9 +36,14 @@ public class calendar extends Activity {
         cal = (CalendarView)findViewById(R.id.calendar);
         backbtn = (LinearLayout)findViewById(R.id.back_ic);
         color = Color.parseColor("#fefefe");
+        unsel_color = Color.parseColor("#c5c5c5");
+        linecolor = Color.TRANSPARENT;
         cal.setShowWeekNumber(false);
         cal.setSelectedWeekBackgroundColor(0);
         cal.setFocusedMonthDateColor(color);
+        cal.setUnfocusedMonthDateColor(unsel_color);
+        cal.setWeekSeparatorLineColor(linecolor);
+        cal.setShownWeekCount(6);
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
