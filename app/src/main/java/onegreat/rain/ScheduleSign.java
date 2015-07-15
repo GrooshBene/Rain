@@ -2,38 +2,29 @@ package onegreat.rain;
 
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.graphics.Typeface;
-import android.media.Image;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
-
-import org.w3c.dom.Text;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -45,6 +36,7 @@ public class ScheduleSign extends ActionBarActivity {
     LinearLayout musicpicker;
     LinearLayout gamepicker;
     Spinner spinner_object;
+    String selected_object;
     FloatingActionButton btnok;
     int cat_pos;
     int cnt;
@@ -53,6 +45,7 @@ public class ScheduleSign extends ActionBarActivity {
     TextView tv_date;
     int year, month, day,hour, minute;
     private NotificationManager mNotification;
+    AlarmManager mManager;
 
     int color_te;
     public SharedPreferences pref1;
@@ -62,6 +55,8 @@ public class ScheduleSign extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mNotification = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+        mManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         setContentView(R.layout.activity_schedule_sign);
         GregorianCalendar calendar = new GregorianCalendar();
         color_te = Color.parseColor("#84c6ed");
@@ -102,7 +97,9 @@ public class ScheduleSign extends ActionBarActivity {
         spinner_object.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                cat_pos = position;
+                CharSequence s = adapter_object.getItem(position);
+                selected_object=s.toString();
+                edit1.putString("category_str"+cnt, selected_object);
             }
 
             @Override
@@ -142,7 +139,6 @@ public class ScheduleSign extends ActionBarActivity {
             }
                 else if(!(textedit.getText().toString().trim().equalsIgnoreCase(""))) {
                     edit1.putString("schedule" + cnt, text_e);
-                    edit1.putInt("category" + cnt, cat_pos);
                     edit1.commit();
                     finish();
                 }
@@ -168,6 +164,53 @@ public class ScheduleSign extends ActionBarActivity {
 //        String s = pref1.getString("asdf","no string");
 
 
+    }
+    private void setAlarm() {
+        int hour = pref2.getInt("hour",0);
+        int min = pref2.getInt("minute",0);
+        int month = pref2.getInt("month",0);
+        int year = pref2.getInt("year",0);
+        int day = pref2.getInt("day",0);
+        Intent intent = new Intent(this,AlarmActivity.class);
+        PendingIntent pIndent = PendingIntent.getActivity(this,0,intent,0);
+        mManager.set(AlarmManager.RTC_WAKEUP, RtnMillTime(hour,min)+RtnMillDate(year,month,day), pIndent);
+    }
+    private void releaseAlarm(Context context){
+        Intent intent = new Intent(this,AlarmActivity.class);
+        PendingIntent pIndent = PendingIntent.getActivity(context,0,intent,0);
+        mManager.cancel(pIndent);
+    }
+    private long RtnMillTime(int hourOfDay, int minute){
+        long hour_mil = hourOfDay*60*60*1000;
+        long min_mil = minute*60*1000;
+        return hour_mil+min_mil;
+    }
+    private long RtnMillDate(int year, int month, int day){
+        int i=0;
+        switch(month){
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                i=31;
+                break;
+            case 2:
+                i=28;
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                i=30;
+                break;
+        }
+        long year_mill = year*60*60*24*365*1000;
+        long month_mill = month*60*60*24*i*1000;
+        long day_mill = day*60*60*24*1000;
+        return year_mill+month_mill+day_mill;
     }
 
 

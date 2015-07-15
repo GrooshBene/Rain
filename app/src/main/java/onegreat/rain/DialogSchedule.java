@@ -1,7 +1,10 @@
 package onegreat.rain;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.Dialog;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -43,11 +46,13 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
     Context context;
     int cat_pos;
     FloatingActionButton btn_add;
+    String selected_object;
     SharedPreferences pref2;
     SharedPreferences pref1;
     SharedPreferences.Editor edit2;
     SharedPreferences.Editor edit1;
     int cnt=0;
+    AlarmManager mManager;
     int res;
     ListView scheduleList;
     LinearLayout backbtn;
@@ -59,6 +64,7 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
         super.onCreate(savedInstanceState);
         setWindowManager(); // Window �⺻ ���� ����, ��׶���? dimm���� ���� ��
         setContentView(R.layout.schedule_list); // ���̾�α�? ���̾ƿ�, ���̾ƿ� ���? ���?? �ּ��޾Ƴ����� �о����
+        mManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         btn_add = (FloatingActionButton) findViewById(R.id.btn_add);
         btn_add.setColorPressedResId(R.color.white_pressed);
         btn_add.setIcon(R.drawable.plus);
@@ -123,18 +129,18 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
             String s = pref1.getString("schedule" + i, String.format("\0"));
             String date = pref1.getString("date" + i, String.format("\0"));
             String time = pref1.getString("time"+i, String.format("\0"));
-            cat_pos = pref1.getInt("category"+i, 1);
-            switch(cat_pos) {
-                case 1:
+            String selected_object = pref1.getString("category_str"+i, "asdf");
+            switch(selected_object) {
+                case "외출":
                     res = R.drawable.ic_type_exr;
                     break;
-                case 2:
+                case "식사":
                     res = R.drawable.ic_type_food;
                     break;
-                case 3:
+                case "자기개발/업무":
                     res = R.drawable.ic_type_edu;
                     break;
-                case 4:
+                case "기타":
                     res = R.drawable.ic_type_etc;
                     break;
             }
@@ -225,6 +231,11 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
 
 
 
+    }
+    private void releaseAlarm(){
+        Intent intent = new Intent(this,AlarmActivity.class);
+        PendingIntent pIndent = PendingIntent.getActivity(context, 0, intent, 0);
+        mManager.cancel(pIndent);
     }
 //    @Override
 //    public void onResume() {

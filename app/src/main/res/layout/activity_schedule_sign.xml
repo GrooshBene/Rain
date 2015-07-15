@@ -189,7 +189,8 @@
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
                         android:layout_weight="7"
-                        android:id="@+id/spinner"></Spinner>
+                        android:id="@+id/spinner"
+                        android:theme="@style/mySpinnerItemStyle"></Spinner>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -257,6 +258,7 @@
                 android:layout_height="wrap_content"
                 fab:fab_colorNormal="@color/white"
                 fab:fab_colorPressed="@color/white_pressed"
+                fab:fab_icon="@drawable/btn_v"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="16dp"/>

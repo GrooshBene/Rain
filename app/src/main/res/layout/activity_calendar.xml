@@ -106,6 +106,7 @@
             android:layout_weight="5.5"
             android:layout_marginTop="10dp"
             android:listSelector="@drawable/grid_view_select"
+             android:scrollbars="none"
             android:numColumns="7"
             android:stretchMode="columnWidth" />
 
