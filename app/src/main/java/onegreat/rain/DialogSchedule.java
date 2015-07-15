@@ -41,6 +41,7 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
     enum Direction {LEFT, RIGHT;}
     ArrayList<CData> dataArr;
     Context context;
+    int cat_pos;
     FloatingActionButton btn_add;
     SharedPreferences pref2;
     SharedPreferences pref1;
@@ -60,6 +61,7 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
         setContentView(R.layout.schedule_list); // ���̾�α�? ���̾ƿ�, ���̾ƿ� ���? ���?? �ּ��޾Ƴ����� �о����
         btn_add = (FloatingActionButton) findViewById(R.id.btn_add);
         btn_add.setColorPressedResId(R.color.white_pressed);
+        btn_add.setIcon(R.drawable.plus);
         btn_add.setColorNormalResId(R.color.white);
         scheduleList = (ListView) findViewById(R.id.schedule_list);
         Intent intent = getIntent();
@@ -120,23 +122,24 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
         for (int i = 0;/*!(pref1.getString("Schedule"+i,"default").equals("default"))*/ i <= cnt; i++) {
             String s = pref1.getString("schedule" + i, String.format("\0"));
             String date = pref1.getString("date" + i, String.format("\0"));
-            String category= pref1.getString("category"+i,String.format("\0"));
-            switch(category){
-                case "외출":
+            String time = pref1.getString("time"+i, String.format("\0"));
+            cat_pos = pref1.getInt("category"+i, 1);
+            switch(cat_pos) {
+                case 1:
                     res = R.drawable.ic_type_exr;
                     break;
-                case "식사":
+                case 2:
                     res = R.drawable.ic_type_food;
                     break;
-                case "자기개발/업무":
+                case 3:
                     res = R.drawable.ic_type_edu;
                     break;
-                case "기타":
+                case 4:
                     res = R.drawable.ic_type_etc;
                     break;
             }
-            if (s.equals("\0") && date.equals("\0")) continue;
-            dataArr.add(new CData(getApplicationContext(),res, s, date,i));
+            if (s.equals("\0") || date.equals("\0")) continue;
+            dataArr.add(new CData(getApplicationContext(),res, s, date,i,time));
             //프리퍼런스 불러오기
         }
         SwipeDismissListViewTouchListener touchListener =
@@ -182,8 +185,10 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
 
                             }
                         });
+
         scheduleList.setOnTouchListener(touchListener);
         scheduleList.setOnScrollListener(touchListener.makeScrollListener());
+        scheduleList.setOnItemClickListener(this);
     }
 
 
@@ -209,6 +214,16 @@ public class DialogSchedule extends Activity implements AdapterView.OnItemClickL
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent mIntent =null;
+        CData s = adapter.getItem(position);
+        int id_edit = s.id_position;
+        edit2.putInt("id_edit",id_edit);
+        edit2.commit();
+        mIntent = new Intent(DialogSchedule.this, ScheduleEdit.class);
+        startActivity(mIntent);
+        finish();
+
+
 
     }
 //    @Override

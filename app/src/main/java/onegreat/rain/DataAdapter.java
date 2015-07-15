@@ -1,6 +1,7 @@
 package onegreat.rain;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.media.Image;
 import android.view.LayoutInflater;
@@ -9,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,6 +24,12 @@ import java.util.ArrayList;
 public class DataAdapter extends ArrayAdapter<CData> {
     // 레이아웃 XML을 읽어들이기 위한 객체
     private LayoutInflater mInflater;
+    ImageView Image;
+    TextView mText;
+    TextView mDate;
+    TextView mTime;
+    Typeface tf;
+
 
     public DataAdapter(Context context, ArrayList<CData> object) {
         // 상위 클래스의 초기화 과정
@@ -46,9 +55,11 @@ public class DataAdapter extends ArrayAdapter<CData> {
         if (data != null) {
             //화면 출력
 
-                ImageView Image = (ImageView)view.findViewById(R.id.mImage);
-                TextView mText = (TextView)view.findViewById(R.id.mText);
-                TextView mDate = (TextView)view.findViewById(R.id.mDate);
+                Image = (ImageView)view.findViewById(R.id.mImage);
+                mText = (TextView)view.findViewById(R.id.mText);
+                mDate = (TextView)view.findViewById(R.id.mDate);
+                mTime = (TextView)view.findViewById(R.id.mTime);
+                mTime.setText(data.getTime()+"");
                 mText.setText(data.getContent_label()+"");
                 mDate.setText(data.getDescription()+"");
                 Image.setImageResource(data.getIcon());
